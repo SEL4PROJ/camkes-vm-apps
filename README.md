@@ -15,14 +15,17 @@ This project is for running virtualised Linux guests on seL4 for ARM and x86 pla
 a virtual machine monitor (VMM) server, faciliating the intialisation, booting and run-time management of a guest OS. 
 You can view the code for the VMMs in the `camkes-vm` repository under `VM_Arm` and `VM`. 
 
-Currently the supported platforms include:
+Currently the supported architectures include:
+* Arm
+* x86
+* x86_64 (coming)
+
+The supported platforms on Arm include:
 * Exynos5 (exynos5410, exynos5422)
 * TK1
 * TX1
 * TX2
 * QEMU ARM virt machine
-* x86
-* x86_64 (coming)
 
 ## Getting and Building
 The following example builds the camkes arm vmm for the TK1.
@@ -31,7 +34,7 @@ repo init -u https://github.com/SEL4PROJ/camkes-vm-manifest.git
 repo sync
 mkdir build
 cd build
-../init-build.sh -DCAMKES_VM_APP=vm_minimal -DPLATFORM=tk1
+../init-build.sh -DCAMKES_VM_APP=vm_minimal -DARCH=Arm -DPLATFORM=tk1
 ninja
 ```
 *Note: To buid for another platform you can substitute the value of the `-DPLATFORM` variable e.g. (exynos5422, tx1, tx2, qemu-arm-virt)*
@@ -63,9 +66,9 @@ See the `apps/Arm/` subdirectory for all the supported virtual machine manager a
 
 ## CAmkES x86 VMM Applications
 
-* The `minimal` application is simple CAmkES VM application. The application is configured with:
+* The `vm_minimal` application is simple CAmkES VM application. The application is configured with:
 
-- *1 Guest Linux VM:* The Linux guest is a [buildroot](https://buildroot.org/) built image sourced from the [the camkes-vm repo](https://github.com/seL4/camkes-vm). The Linux images (rootfs and kernel) are defined in the `CMakeLists.txt` file of the `minimal` application. In the `CMakeLists.txt` file we are able to find that the rootfs and kernel images  are added to the `FileServer` under the names `"rootfs.cpio"` and  `"bzimage"` respectively.
+- *1 Guest Linux VM:* The Linux guest is a [buildroot](https://buildroot.org/) built image sourced from the [the camkes-vm repo](https://github.com/seL4/camkes-vm). The Linux images (rootfs and kernel) are defined in the `CMakeLists.txt` file of the `vm_minimal` application. In the `CMakeLists.txt` file we are able to find that the rootfs and kernel images  are added to the `FileServer` under the names `"rootfs.cpio"` and  `"bzimage"` respectively.
 
 * The `optiplex9020` VM application is configured with:
 
