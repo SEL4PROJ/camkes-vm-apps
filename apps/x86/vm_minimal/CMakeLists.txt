@@ -12,7 +12,7 @@
 
 cmake_minimum_required(VERSION 3.8.2)
 
-project(minimal)
+project(vm_minimal)
 
 # Include CAmkES VM helper functions
 include(${CAMKES_VM_HELPERS_PATH})
@@ -37,7 +37,7 @@ AddToFileServer("bzimage" ${decompressed_kernel} DEPENDS extract_linux_kernel)
 AddToFileServer("rootfs.cpio" ${rootfs_file})
 
 # Initialise CAmkES Root Server with addition CPP includes
-DeclareCAmkESVMRootServer(minimal.camkes)
+DeclareCAmkESVMRootServer(vm_minimal.camkes)
 
 if(SIMULATION)
 	include(simulation)
