@@ -11,12 +11,9 @@
 #
 cmake_minimum_required(VERSION 3.7.2)
 
-if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/apps/Arm/${CAMKES_VM_APP}")
-    set(AppArch "Arm" CACHE STRING "" FORCE)
-elseif (EXISTS "${CMAKE_CURRENT_LIST_DIR}/apps/x86/${CAMKES_VM_APP}")
-    set(AppArch "x86" CACHE STRING "" FORCE)
-else()
-    message(FATAL_ERROR "App does not exist for supported architecture")
+set(AppArch ${ARCH} CACHE STRING "" FORCE)
+if (NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/apps/${AppArch}/${CAMKES_VM_APP}")
+    message(FATAL_ERROR "App '" ${CAMKES_VM_APP} "' does not exist architecture ${AppArch}")
 endif()
 
 if (AppArch STREQUAL "Arm")
