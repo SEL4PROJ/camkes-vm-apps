@@ -10,4 +10,4 @@ This repository is archived.
 
 Please use <https://github.com/seL4/camkes-vm-examples> instead.
 
-The old README text is [here](README.md).
+The old README text is [here](README-old.md).
